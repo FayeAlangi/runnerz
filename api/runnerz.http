@@ -1,5 +1,5 @@
 ### GET request with a header
-GET http://localhost:8080/api/runs/hello
+GET http://localhost:8080/api/runs
 
 
 ### GET request with a parameter
