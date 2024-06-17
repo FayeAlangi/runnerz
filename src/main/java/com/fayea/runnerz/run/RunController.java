@@ -2,9 +2,7 @@ package com.fayea.runnerz.run;
 
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,22 +28,24 @@ public class RunController {
         }
         return run.get();
     }
-    // Implement other CRUD operations here
 @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("")
-    void createRun(@Valid @RequestBody Run run) {
-        runRepository.create(run);
+    void save(@Valid @RequestBody Run run) {
+        runRepository.save(run);
     }
 
    @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("{id}")
     void update(@RequestBody Run run, @PathVariable Integer id) {
-        runRepository.update(run,id);
+        runRepository.save(run);
     }
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     void delete(@PathVariable Integer id) {
-        runRepository.deleteById(id);
+        runRepository.delete(runRepository.findById(id).get());
     }
-
+@GetMapping("/location/{location}")
+    List<Run> findByLocation(@PathVariable String location){
+      return runRepository.findAllByLocation(location);
+};
 }

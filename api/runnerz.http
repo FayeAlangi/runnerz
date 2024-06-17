@@ -5,6 +5,9 @@ GET http://localhost:8080/api/runs
 ### GET request with a parameter
 GET http://localhost:8080/api/runs/1
 
+### GET request with a parameter
+GET http://localhost:8080/api/runs/location/OUTDOOR
+
 ### Create new Run with valid dates (completedOn is before startedOn)
 POST http://localhost:8080/api/runs
 Content-Type: application/json

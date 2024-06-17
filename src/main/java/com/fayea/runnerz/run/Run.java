@@ -3,8 +3,11 @@ package com.fayea.runnerz.run;
 import java.time.LocalDateTime;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 
 public record Run(
+        @Id
 
         Integer id,
         @NotEmpty
@@ -13,7 +16,10 @@ public record Run(
         LocalDateTime completedOn,
         @Positive
         Integer miles,
-        Location location
+        Location location,
+        @Version
+        Integer version
+
 ) {
     public Run{
         if (!completedOn.isAfter(startedOn)){
